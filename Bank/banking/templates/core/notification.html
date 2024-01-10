@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+  <h1>Notifications</h1>
+  <ul>
+    {% for notification in notifications %}
+      <li>{{ notification.message }}</li>
+    {% empty %}
+      <li>No notifications</li>
+    {% endfor %}
+  </ul>
+  <form method="post" action="{% url 'mark_notifications_read' %}">
+    {% csrf_token %}
+    <button type="submit">Mark all as read</button>
+  </form>
+{% endblock %}
